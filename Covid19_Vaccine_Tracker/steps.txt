@@ -1,0 +1,42 @@
+
+
+set FLASK_APP=main.py flask run
+
+/////////
+from app import db
+db.create all
+////////
+
+create schema covid;
+
+CREATE TABLE IF NOT EXISTS covid.vaccines (
+		vaccine_id SERIAL NOT NULL PRIMARY KEY,
+		name TEXT NOT NULL,
+		phase TEXT NOT NULL,
+		vaccine_type TEXT,
+		developer TEXT ARRAY,
+		efficacy TEXT,
+		dose TEXT,
+		vaccine_storage TEXT
+		
+	);
+
+
+INSERT INTO covid.vaccines
+    (name,phase,vaccine_type,developer,efficacy,dose,vaccine_storage)
+    VALUES
+    ('Comirnaty','Approved','Muscle injection','{"pfizer", "BIONTECH"}','95%','2 doses,3 weeks apart','Freezer storage only at –94°F (–70°C)');
+
+   select * from covid.vaccines;
+
+
+
+{
+   "name": "Comirnaty",
+   "phase": "Approved",
+   "vaccine_type": "Muscle injection",
+   "developer" : "{pfizer, BIONTECH}",
+   "efficacy":  "95%" ,
+   "dose" : "2 doses,3 weeks apart",
+   "vaccine_storage":  "Freezer storage only at –94°F (–70°C)"
+}
